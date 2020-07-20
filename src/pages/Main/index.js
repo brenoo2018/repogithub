@@ -36,7 +36,7 @@ const Main = () => {
       const usersStorage = await AsyncStorage.getItem('@users');
 
       if (usersStorage) {
-        setUsers(JSON.parse(usersStorage));
+        await setUsers(JSON.parse(usersStorage));
       }
     }
 
@@ -111,7 +111,7 @@ const Main = () => {
             <Name>{item.name}</Name>
             <Bio>{item.bio}</Bio>
 
-            <ProfileButton onPress={(user) => handleNavigateUser(item)}>
+            <ProfileButton onPress={() => handleNavigateUser(item)}>
               <ProfileButtonText>Ver Perfil</ProfileButtonText>
             </ProfileButton>
           </User>

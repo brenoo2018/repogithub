@@ -1,5 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
+//import {useRoute} from '@react-navigation/native';
 
 import Main from '../pages/Main';
 import User from '../pages/User';
@@ -10,6 +11,8 @@ import User from '../pages/User';
 const Stack = createStackNavigator();
 
 const Routes = () => {
+  //const route = useRoute();
+  // const routeParams = route.params;
   return (
     <Stack.Navigator
       initialRouteName={Main}
@@ -26,7 +29,13 @@ const Routes = () => {
         component={Main}
         options={{headerTitle: 'Usuários'}}
       />
-      <Stack.Screen name="User" component={User} />
+      <Stack.Screen
+        name="User"
+        component={User}
+        options={{
+          headerTitle: 'User',
+        }}
+      />
     </Stack.Navigator>
   );
 };
