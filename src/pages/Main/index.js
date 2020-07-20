@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Keyboard, ActivityIndicator} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -23,6 +24,33 @@ const Main = () => {
   const [user, setUser] = useState('');
   const [users, setUsers] = useState([]);
   const [loading, setloading] = useState(false);
+
+  /**
+   * Recupera o usuário quando o app carregar
+   */
+  useEffect(() => {
+    async function loadUserStorage() {
+      const usersStorage = await AsyncStorage.getItem('@users');
+
+      if (usersStorage) {
+        setUsers(JSON.parse(usersStorage));
+      }
+    }
+
+    loadUserStorage();
+  }, []);
+
+  /**
+   * Salva o usuário quando o estado mudar
+   */
+
+  useEffect(() => {
+    function saveUserStorage() {
+      AsyncStorage.setItem('@users', JSON.stringify(users));
+    }
+
+    saveUserStorage();
+  }, [users]);
 
   async function handleSubmit() {
     if (!user) {
@@ -68,7 +96,7 @@ const Main = () => {
 
       <List
         data={users}
-        keyExtractor={(user) => user.login}
+        keyExtractor={(us) => us.login}
         renderItem={({item}) => (
           <User>
             <Avatar source={{uri: item.avatar}} />
