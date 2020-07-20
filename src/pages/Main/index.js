@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Keyboard, ActivityIndicator} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
+import {useNavigation} from '@react-navigation/native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -24,6 +25,8 @@ const Main = () => {
   const [user, setUser] = useState('');
   const [users, setUsers] = useState([]);
   const [loading, setloading] = useState(false);
+
+  const navigation = useNavigation();
 
   /**
    * Recupera o usuário quando o app carregar
@@ -73,6 +76,11 @@ const Main = () => {
 
     Keyboard.dismiss();
   }
+
+  function handleNavigateUser(item) {
+    navigation.navigate('User', {item});
+  }
+
   return (
     <Container>
       <Form>
@@ -103,7 +111,7 @@ const Main = () => {
             <Name>{item.name}</Name>
             <Bio>{item.bio}</Bio>
 
-            <ProfileButton onPress={() => {}}>
+            <ProfileButton onPress={(user) => handleNavigateUser(item)}>
               <ProfileButtonText>Ver Perfil</ProfileButtonText>
             </ProfileButton>
           </User>
