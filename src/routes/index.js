@@ -21,7 +21,11 @@ const Routes = () => {
         headerTintColor: '#FFF',
         headerBackTitleVisible: false,
       }}>
-      <Stack.Screen name="Main" component={Main} />
+      <Stack.Screen
+        name="Main"
+        component={Main}
+        options={{headerTitle: 'Usuários'}}
+      />
       <Stack.Screen name="User" component={User} />
     </Stack.Navigator>
   );

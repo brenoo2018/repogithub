@@ -1,12 +1,21 @@
 import React from 'react';
-import {Text} from 'react-native';
 
-import {Container} from './styles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {Container, Form, Input, SubmitButton} from './styles';
 
 const Main = () => {
   return (
     <Container>
-      <Text>Main</Text>
+      <Form>
+        <Input
+          autoCorrect={false}
+          autoCaptalize="none"
+          placeholder="Adicionar Usuário"
+        />
+        <SubmitButton>
+          <Icon name="add" size={20} color="#FFF" />
+        </SubmitButton>
+      </Form>
     </Container>
   );
 };
