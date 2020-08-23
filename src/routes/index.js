@@ -29,13 +29,7 @@ const Routes = () => {
         component={Main}
         options={{headerTitle: 'Usuários'}}
       />
-      <Stack.Screen
-        name="User"
-        component={User}
-        options={{
-          headerTitle: 'User',
-        }}
-      />
+      <Stack.Screen name="User" component={User} />
     </Stack.Navigator>
   );
 };
